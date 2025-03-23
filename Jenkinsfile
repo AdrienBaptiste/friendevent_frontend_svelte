@@ -1,5 +1,7 @@
 pipeline {
-    agent any  // Utilise n'importe quel agent disponible
+    agent {
+        docker { image 'node:18' } // Utilise l’image Node.js 18
+    }
 
     stages {
         stage('Checkout') {
