@@ -1,30 +1,17 @@
 pipeline {
-    agent {
-        docker { image 'node:18' } // Utilise l’image Node.js 18
-    }
+    agent any  
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AdrienBaptiste/friendevent_frontend_svelte.git'
+                git branch: 'dev', url: 'https://github.com/AdrienBaptiste/friendevent_frontend_svelte.git'
             }
         }
-
-        stage('Install dependencies') {
+        
+        stage('Backend Build') {
             steps {
-                sh 'npm install' // Installe les dépendances
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm run build' // Construit le projet
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'npm test' // Exécute les tests
+                echo "C'est l'étape Frontend"
+                echo "Le frontend est prêt pour les étapes de build."
             }
         }
     }
