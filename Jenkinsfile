@@ -1,17 +1,19 @@
 pipeline {
-    agent any  
-
+    agent { label 'node' }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'dev', url: 'https://github.com/AdrienBaptiste/friendevent_frontend_svelte.git'
+                git 'https://github.com/AdrienBaptiste/friendevent_frontend_svelte.git'
             }
         }
-        
-        stage('Backend Build') {
+        stage('Install dependencies') {
             steps {
-                echo "C'est l'étape Frontend"
-                echo "Le frontend est prêt pour les étapes de build."
+                sh 'npm install'
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh 'npm test'
             }
         }
     }
