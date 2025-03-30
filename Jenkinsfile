@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'node' }
+    agent { label 'agent-node-jest' }
     stages {
         stage('Checkout') {
             steps {
